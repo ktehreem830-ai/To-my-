@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Forever Love 💖</title>
+  <style>
+    :root{
+      --bg1:#ff6b9a;
+      --bg2:#ff9a8b;
+      --bg3:#fad0c4;
+      --card:#ffffff1a;
+      --glass:#ffffff24;
+      --text:#fff;
+      --btn:#ffffff;
+      --btnText:#ff3f7a;
+      --shadow: 0 18px 60px rgba(0,0,0,.20);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.22), transparent 60%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      overflow:hidden;
+    }
+
+    /* Floating hearts background */
+    .hearts{
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.55;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.15));
+    }
+    .heart{
+      position:absolute;
+      width:18px; height:18px;
+      transform: rotate(45deg);
+      background: rgba(255,255,255,.9);
+      border-radius: 4px;
+      animation: floatUp linear infinite;
+    }
+    .heart:before, .heart:after{
+      content:"";
+      position:absolute;
+      width:18px; height:18px;
+      background: rgba(255,255,255,.9);
+      border-radius:50%;
+    }
+    .heart:before{ left:-9px; top:0; }
+    .heart:after{ left:0; top:-9px; }
+
+    @keyframes floatUp{
+      from{ transform: translateY(30vh) rotate(45deg); opacity:0; }
+      10%{opacity:.9}
+      to{ transform: translateY(-120vh) rotate(45deg); opacity:0; }
+    }
+
+    /* Center layout */
+    .wrap{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .card{
+      width:min(520px, 96vw);
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 24px;
+      padding: 22px 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow:hidden;
+    }
+
+    .top{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 14px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius: 999px;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.22);
+      font-weight:600;
+      letter-spacing:.2px;
+      font-size:14px;
+    }
+
+    .progress{
+      font-size:13px;
+      opacity:.9;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 6px 10px;
+      border-radius:999px;
+    }
+
+    h1{
+      margin: 8px 0 10px;
+      font-size: 28px;
+      line-height:1.2;
+      letter-spacing:.2px;
+      text-shadow: 0 12px 30px rgba(0,0,0,.20);
+    }
+
+    p{
+      margin: 0 0 14px;
+      font-size: 16px;
+      line-height: 1.7;
+      opacity: .98;
+    }
+
+    .ill{
+      margin: 14px 0 18px;
+      display:flex;
+      justify-content:center;
+    }
+
+    /* Cute heart illustration */
+    .bigHeart{
+      width: 150px;
+      height: 150px;
+      position:relative;
+      transform: rotate(45deg);
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.18);
+      animation: beat 1.1s infinite ease-in-out;
+    }
+    .bigHeart:before,.bigHeart:after{
+      content:"";
+      position:absolute;
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      background: rgba(255,255,255,.92);
+    }
+    .bigHeart:before{ left:-75px; top:0; }
+    .bigHeart:after{ left:0; top:-75px; }
+
+    .bigHeartText{
+      position:absolute;
+      inset:0;
+      transform: rotate(-45deg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      font-weight:800;
+      color: #ff2f73;
+      letter-spacing:.6px;
+      text-transform: uppercase;
+    }
+
+    @keyframes beat{
+      0%,100%{ transform: rotate(45deg) scale(1); }
+      50%{ transform: rotate(45deg) scale(1.08); }
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      margin-top: 12px;
+      flex-wrap:wrap;
+    }
+
+    button{
+      border:0;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-weight:800;
+      letter-spacing:.2px;
+      flex:1;
+      min-width: 140px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.18);
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    button:active{ transform: scale(.98); }
+    .btnPrimary{
+      background: var(--btn);
+      color: var(--btnText);
+    }
+    .btnGhost{
+      background: rgba(255,255,255,.16);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow:none;
+    }
+
+    .tiny{
+      margin-top: 12px;
+      font-size: 12px;
+      opacity:.85;
+      text-align:center;
+    }
+
+    /* “Pages” (sections) */
+    .page{ display:none; }
+    .page.active{ display:block; }
+
+    /* Small sparkle line */
+    .spark{
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,.65), transparent);
+      margin: 12px 0 14px;
+      opacity:.85;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- floating hearts -->
+  <div class="hearts" id="hearts"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="badge">💌 Secret Love Note</div>
+        <div class="progress" id="progress">1 / 3</div>
+      </div>
+
+      <!-- PAGE 1 -->
+      <div class="page active" id="p1">
+        <h1>To My Husband 💖</h1>
+        <p>
+          Tum meri zindagi ka sab se beautiful hisa ho.  
+          Tumhare saath har din “home” lagta hai.
+        </p>
+        <div class="spark"></div>
+        <p>
+          Aaj bas itna kehna tha… <b>I choose you</b> — today, tomorrow, always. ✨
+        </p>
+
+        <div class="ill">
+          <div class="bigHeart">
+            <div class="bigHeartText">LOVE</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btnPrimary" onclick="go(2)">Next ➜</button>
+        </div>
+        <div class="tiny">Tip: You can edit text anytime 💕</div>
+      </div>
+
+      <!-- PAGE 2 -->
+      <div class="page" id="p2">
+        <h1>Little Reasons I Love You 😘</h1>
+        <p>
+          • Tumhara khayal rakhna 💗<br/>
+          • Tumhari smile 😄<br/>
+          • Tumhara support (har time) 🤍<br/>
+          • Tum mere best friend bhi ho 🫶
+        </p>
+
+        <div class="ill">
+          <div class="bigHeart">
+            <div class="bigHeartText">US</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btnGhost" onclick="go(1)">⬅ Back</button>
+          <button class="btnPrimary" onclick="go(3)">Next ➜</button>
+        </div>
+        <div class="tiny">Next page me surprise hai 💌</div>
+      </div>
+
+      <!-- PAGE 3 -->
+      <div class="page" id="p3">
+        <h1>One Last Secret 💞</h1>
+        <p>
+          Jab bhi tum thak jao… ya busy ho…  
+          remember: <b>tumhara har din mere liye special hai</b>.
+        </p>
+        <div class="spark"></div>
+        <p style="font-size:18px; font-weight:800;">
+          I LOVE YOU FOREVER ❤️
+        </p>
+
+        <div class="ill">
+          <div class="bigHeart">
+            <div class="bigHeartText">FOREVER</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btnGhost" onclick="go(2)">⬅ Back</button>
+          <button class="btnPrimary" onclick="share()">Share Link 📩</button>
+        </div>
+        <div class="tiny">Send him the website link and watch his reaction 😍</div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Page switching
+    function go(n){
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('p'+n).classList.add('active');
+      document.getElementById('progress').textContent = n + ' / 3';
+      window.scrollTo(0,0);
+    }
+
+    // Share helper
+    function share(){
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({ title: 'For My Love 💖', text: 'Open this 💌', url });
+      } else {
+        prompt("Copy this link and send it ❤️", url);
+      }
+    }
+
+    // Floating hearts generator
+    const hearts = document.getElementById('hearts');
+    const count = 18;
+    for(let i=0;i<count;i++){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      const left = Math.random()*100;
+      const size = 10 + Math.random()*16;
+      const dur = 6 + Math.random()*8;
+      const delay = Math.random()*6;
+      h.style.left = left + 'vw';
+      h.style.width = size + 'px';
+      h.style.height = size + 'px';
+      h.style.animationDuration = dur + 's';
+      h.style.animationDelay = delay + 's';
+      h.style.opacity = 0.25 + Math.random()*0.55;
+      hearts.appendChild(h);
+    }
+  </script>
+</body>
+</html>
